@@ -4,143 +4,223 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ronovo</title>
-<meta name="description" content="Projects by Ronovo.">
-<meta name="color-scheme" content="dark light">
+<meta name="description" content="Self-hosted tools and browser games for tabletop players, OSRS players, and anyone who likes to tinker.">
+<meta name="color-scheme" content="dark">
 <meta property="og:title" content="Ronovo">
-<meta property="og:description" content="Projects by Ronovo.">
+<meta property="og:description" content="Self-hosted tools and browser games for tabletop players, OSRS players, and anyone who likes to tinker.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ronovo.github.io/">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/project-page.css">
 <style>
-  :root {
-    --bg: #15171c;
-    --panel: #1d2027;
-    --panel-hover: #232731;
-    --border: #2f3440;
-    --text: #e9ecf2;
-    --muted: #a1a8b8;
-    --accent: #7fb2ff;
-    --radius: 12px;
-    --maxw: 860px;
-  }
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: #f6f7f9;
-      --panel: #ffffff;
-      --panel-hover: #f0f3f8;
-      --border: #dde1e8;
-      --text: #1d2129;
-      --muted: #5c6475;
-      --accent: #2463c9;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 400 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
-
-  header { padding: 72px 0 40px; }
-  h1 { margin: 0 0 8px; font-size: clamp(32px, 6vw, 44px); line-height: 1.1; }
-  .tag { margin: 0 0 20px; color: var(--muted); font-size: 18px; }
-  .gh {
+  .hero h1 { font-size: clamp(44px, 11vw, 88px); letter-spacing: 0.12em; text-transform: uppercase; }
+  .hero .intro { margin: -12px 0 28px; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .chips a {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 16px;
+    gap: 10px;
+    padding: 8px 14px;
     border: 1px solid var(--border);
-    border-radius: 999px;
+    background: var(--panel);
     color: var(--text);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
+    font: 600 13px var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
-  .gh:hover { background: var(--panel-hover); }
-  .gh svg { fill: currentColor; }
+  .chips a:hover { border-color: var(--accent); color: var(--accent); }
+  .chips b { color: var(--magenta); }
 
-  h2 { margin: 0 0 16px; font-size: 22px; }
-  .grid {
+  .project { display: flex; flex-direction: column; }
+  .project p { margin: 0 0 14px; }
+  .thumb {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    margin: -20px -20px 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgb(255 43 214 / 0.18), rgb(0 240 255 / 0.12)), var(--panel);
+    border-bottom: 1px solid var(--border);
   }
-  .card {
-    display: flex;
-    flex-direction: column;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-  }
-  .card h3 { margin: 0 0 6px; font-size: 18px; }
-  .card p { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; }
+  .thumb img { display: block; max-width: 100%; height: 100%; object-fit: contain; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 0 16px; padding: 0; list-style: none; }
   .tags li {
-    font-size: 12px;
-    padding: 2px 9px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    color: var(--muted);
+    padding: 2px 8px;
+    border: 1px solid rgb(255 43 214 / 0.45);
+    color: var(--magenta);
+    font: 500 11px var(--font-mono);
+    text-transform: uppercase;
   }
-  .links { margin-top: auto; display: flex; gap: 16px; font-weight: 600; font-size: 15px; }
-  .links a { text-decoration: none; }
-  .links a:hover { text-decoration: underline; }
-
-  footer { padding: 48px 0 40px; color: var(--muted); font-size: 14px; }
+  .project .links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+  .project .links .btn { padding: 8px 16px; font-size: 12px; }
+  .project .links a:not(.btn) { font: 600 13px var(--font-mono); text-transform: uppercase; text-decoration: none; }
+  .project .links a:not(.btn):hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 
-<header class="wrap">
-  <h1>Ronovo</h1>
-  <p class="tag">Landing Page for the Projects of Ian Kent</p>
-  <a class="gh" href="https://github.com/Ronovo">
-    <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-    github.com/Ronovo
-  </a>
+<header>
+  <nav class="wrap nav">
+    <a class="brand" href="#top"><span>Ronovo</span></a>
+    <a class="link" href="#general">General</a>
+    <a class="link" href="#ttrpg">TTRPG</a>
+    <a class="link" href="#runescape">RuneScape</a>
+    <a class="link" href="#games">Games</a>
+    <a class="link gh" href="https://github.com/Ronovo" rel="noopener">GitHub</a>
+  </nav>
 </header>
 
-<main class="wrap">
-  <h2>Projects</h2>
-  <div class="grid">
-    <article class="card">
-      <h3>Personal RuneScape Tracker</h3>
-      <p>A self-hosted Old School RuneScape dashboard.</p>
-      <ul class="tags"><li>Node</li><li>TypeScript</li><li>OSRS</li></ul>
-      <div class="links">
-        <a href="https://ronovo.github.io/Personal-RuneScape-Tracker/">Website</a>
-        <a href="https://github.com/Ronovo/Personal-RuneScape-Tracker">Source</a>
-      </div>
-    </article>
-    <article class="card">
-      <h3>Leagues Tasks</h3>
-      <p>A RuneLite plugin to track every task from
-        past OSRS Leagues events, with optional
-        sync to the Personal RuneScape Tracker.</p>
-      <ul class="tags"><li>Java</li><li>RuneLite</li><li>OSRS</li></ul>
-      <div class="links">
-        <a href="https://ronovo.github.io/Leagues-Task-Plugin/">Website</a>
-        <a href="https://github.com/Ronovo/Leagues-Task-Plugin">Source</a>
-      </div>
-    </article>
-    <article class="card">
-      <h3>TTRPG Adventure Blog</h3>
-      <p>An Obsidian overlay that publishes solo
-        tabletop RPG play reports from your vault
-        as a website.</p>
-      <ul class="tags"><li>Node</li><li>Astro</li><li>Obsidian</li></ul>
-      <div class="links">
-        <a href="https://soloronovo.com">Live Example</a>
-        <a href="https://github.com/Ronovo/ttrpg-adventure-blog">Source</a>
-      </div>
-    </article>
+<a id="top"></a>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Ian Kent</p>
+    <h1>Ronovo</h1>
+    <p class="tag">Self-hosted tools and browser games for tabletop players, OSRS players, and anyone who likes to tinker.</p>
+    <p class="intro">I am Ian Kent, also known as Ronovo most places online.</p>
+    <ul class="chips">
+      <li><a href="#general">General <b>1</b></a></li>
+      <li><a href="#ttrpg">TTRPG <b>2</b></a></li>
+      <li><a href="#runescape">RuneScape <b>3</b></a></li>
+      <li><a href="#games">Games <b>4</b></a></li>
+    </ul>
   </div>
+</div>
+
+<main>
+<section id="general">
+  <div class="wrap">
+    <h2>General</h2>
+    <p class="lede">Odds and ends that don&#39;t fit anywhere else</p>
+    <div class="grid">
+      <article class="card project">
+        <h3>Esoteric Chat</h3>
+        <p>A chat app that runs code in esoteric languages like Brainfart, HQ9+ and DeadSimple. Ported from my Discord bot.</p>
+        <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/esoteric-chat/">About</a>
+          <a href="https://github.com/Ronovo/esoteric-chat">Source</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="ttrpg" class="alt">
+  <div class="wrap">
+    <h2>TTRPG</h2>
+    <p class="lede">Tools for tabletop players and gamemasters.</p>
+    <div class="grid">
+      <article class="card project">
+        <h3>GM Toolbox</h3>
+        <p>A web toolkit for tabletop gamemasters: dice and card oracles, branching flows, and JSON import/export.</p>
+        <ul class="tags"><li>C#</li><li>ASP.NET Core</li><li>SQLite</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/gamemaster-toolbox/">About</a>
+          <a href="https://github.com/Ronovo/Gamemaster-Toolbox">Source</a>
+        </div>
+      </article>
+      <article class="card project">
+        <h3>TTRPG Adventure Blog</h3>
+        <p>An Obsidian overlay that publishes solo tabletop RPG play reports from your vault as a website.</p>
+        <ul class="tags"><li>JavaScript</li><li>Node</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/ttrpg-adventure-blog/">About</a>
+          <a href="https://github.com/Ronovo/ttrpg-adventure-blog">Source</a>
+          <a href="https://soloronovo.com" target="_blank" rel="noopener">Example</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="runescape">
+  <div class="wrap">
+    <h2>RuneScape</h2>
+    <p class="lede">Plugins and a OSRS Personal Tracker</p>
+    <div class="grid">
+      <article class="card project">
+        <h3>Personal RuneScape Tracker</h3>
+        <p>A self-hosted Old School RuneScape dashboard.</p>
+        <ul class="tags"><li>TypeScript</li><li>Node</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/personal-runescape-tracker/">About</a>
+          <a href="https://github.com/Ronovo/Personal-RuneScape-Tracker">Source</a>
+        </div>
+      </article>
+      <article class="card project">
+        <h3>Leagues Tasks</h3>
+        <p>A RuneLite plugin to track every task from past OSRS Leagues events. Pairs with Ronovo&#39;s Sync Tool to send them to the Personal RuneScape Tracker.</p>
+        <ul class="tags"><li>Java</li><li>Plugin</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/leagues-task-plugin/">About</a>
+          <a href="https://github.com/Ronovo/Leagues-Task-Plugin">Source</a>
+        </div>
+      </article>
+      <article class="card project">
+        <h3>Ronovo&#39;s Sync Tool</h3>
+        <p>A RuneLite plugin that sends quests, diaries, combat achievements, the collection log and Leagues Tasks completions to the Personal RuneScape Tracker.</p>
+        <ul class="tags"><li>Java</li><li>Plugin</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/ronovos-sync-tool/">About</a>
+          <a href="https://github.com/Ronovo/Ronovos-Sync-Tool">Source</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="games" class="alt">
+  <div class="wrap">
+    <h2>Games</h2>
+    <p class="lede">Various browser games I made</p>
+    <div class="grid">
+      <article class="card project">
+        <h3>Ronovo&#39;s Casino</h3>
+        <p>Blackjack, Ultimate Texas Hold&#39;em, baccarat, roulette, horse racing and more, with accounts, characters and achievements.</p>
+        <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/casino/">About</a>
+          <a href="https://github.com/Ronovo/Casino_Test">Source</a>
+        </div>
+      </article>
+      <article class="card project">
+        <h3>Space Station Explorer</h3>
+        <p>A text-based exploration game on a space station: pick a job, manage power and oxygen, trade stocks, tend the bar and more.</p>
+        <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/space-station-explorer/">About</a>
+          <a href="https://github.com/Ronovo/online-space-station">Source</a>
+        </div>
+      </article>
+      <article class="card project">
+        <h3>Stand Alone Gun System</h3>
+        <p>A text-based weapons system for games: an armory of 26 guns across 6 classes, a firing range with distance, dummy sizes and fire modes, and bulk-fire balance reports.</p>
+        <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/stand-alone-gun-system/">About</a>
+          <a href="https://github.com/Ronovo/standalonegunsystem">Source</a>
+        </div>
+      </article>
+      <article class="card project">
+        <h3>Dead But Dreaming</h3>
+        <p>An idle game where you play an Old One buried deep in the earth, dreaming cultists into gathering the sanity you need to devour the world and be reborn.</p>
+        <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
+        <div class="links">
+          <a class="btn btn-primary" href="/projects/dead-but-dreaming/">About</a>
+          <a href="https://github.com/Ronovo/Dead-But-Dreaming">Source</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer class="wrap">&copy; Ronovo</footer>
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="https://github.com/Ronovo">GitHub</a>
+    </div>
+    <p>&copy; Ronovo</p>
+  </div>
+</footer>
 
 </body>
 </html>

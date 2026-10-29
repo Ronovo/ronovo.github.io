@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ronovo's Sync Tool - RuneLite plugin</title>
+<meta name="description" content="A RuneLite plugin that sends your quests, achievement diaries, combat achievements, collection log and Leagues Tasks completions to a Personal RuneScape Tracker you host yourself.">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="Ronovo's Sync Tool - RuneLite plugin">
+<meta property="og:description" content="A RuneLite plugin that sends your quests, achievement diaries, combat achievements, collection log and Leagues Tasks completions to a Personal RuneScape Tracker you host yourself.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ronovo.github.io/projects/ronovos-sync-tool/">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/project-page.css">
+<style>
+  :root { --accent: #e0b34a; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap nav">
+    <a class="back" href="/">&larr; All projects</a>
+    <a class="brand" href="#top">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M19.5 9.5A7.5 7.5 0 0 0 6 6.8L4.5 8.3" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.5 4.5v3.8h3.8" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.5 14.5A7.5 7.5 0 0 0 18 17.2l1.5-1.5" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19.5 19.5v-3.8h-3.8" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Ronovo's Sync Tool</span>
+    </a>
+    <a class="link" href="#features">Features</a>
+    <a class="link" href="#data">What it sends</a>
+    <a class="link" href="#install">Install</a>
+    <a class="link gh" href="https://github.com/Ronovo/Ronovos-Sync-Tool" rel="noopener">Source</a>
+  </nav>
+</header>
+
+<a id="top"></a>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">RuneScape</p>
+    <h1>Your OSRS progress, on a tracker you run</h1>
+    <p class="tag">
+      Send your quests, achievement diaries, combat achievements, collection log and
+      Leagues Tasks completions from RuneLite to a Personal RuneScape Tracker you host
+      yourself.
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#install">How to install</a>
+      <a class="btn btn-ghost" href="https://github.com/Ronovo/Ronovos-Sync-Tool" rel="noopener">Source on GitHub</a>
+    </div>
+    <p class="note">Not on the Plugin Hub yet. For now it runs from source.</p>
+    <dl class="facts">
+      <div><dt>Type</dt><dd>RuneLite plugin</dd></div>
+      <div><dt>Stack</dt><dd>Java 11</dd></div>
+      <div><dt>Needs</dt><dd>Your own tracker</dd></div>
+      <div><dt>License</dt><dd>BSD 2-Clause</dd></div>
+    </dl>
+  </div>
+</div>
+
+<main>
+
+<section id="features">
+  <div class="wrap">
+    <h2>What it does</h2>
+    <p class="lede">
+      Jagex's hiscores don't show which quests you've done, your diaries, your combat
+      achievements or your collection log. This plugin reads them in RuneLite and sends
+      them to your tracker.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3><span class="dot"></span>Section by section</h3>
+        <p>Sync everything once, then keep tasks, quests, diaries or combat achievements
+          up to date on their own. The tracker keeps whatever a sync leaves out.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>Collection log</h3>
+        <p>A <b>Sync</b> button on the in-game Collection Log captures every slot. The last
+          capture is kept per character, so a full sync can include it later.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>Works with Leagues Tasks</h3>
+        <p>Sends the tasks you completed in the
+          <a href="/projects/leagues-task-plugin/">Leagues Tasks</a> plugin, and powers that
+          plugin's <b>Sync Progress</b> button.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>One direction only</h3>
+        <p>It posts to the tracker and only reads back whether that worked. Nothing from
+          the tracker changes anything in your client.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>Careful with your token</h3>
+        <p>Plain <code>http://</code> is refused for anything but localhost, redirects are not
+          followed, and the token never appears in a log.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>Per character</h3>
+        <p>Each sync is for the character you're logged in as, so an alt's progress never
+          lands on your main.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="data" class="alt">
+  <div class="wrap">
+    <h2>What a sync sends</h2>
+    <p class="lede">
+      Sync is off until you set a server URL and token. When you press a Sync button,
+      the plugin sends only:
+    </p>
+    <div class="panel-box">
+      <ul>
+        <li>Your character name and account hash</li>
+        <li>Quest completion states</li>
+        <li>Your collection log (only once captured from the in-game interface)</li>
+        <li>Achievement diary progress</li>
+        <li>Combat achievement progress</li>
+        <li>Your list of completed Leagues tasks, from the Leagues Tasks plugin</li>
+      </ul>
+      <p class="note">
+        Nothing is sent unless you have entered a URL and token and pressed a Sync
+        button. There is no shared or default server.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install</h2>
+    <p class="lede">
+      The plugin is not on the RuneLite Plugin Hub yet. Until it is, you run it from
+      source: a small Gradle command builds it and opens a RuneLite client with the
+      plugin already loaded, on its own or together with Leagues Tasks.
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/Ronovo/Ronovos-Sync-Tool#installing">Step-by-step: run it in RuneLite</a>
+    </div>
+    <p class="lede">
+      It needs your own
+      <a href="/projects/personal-runescape-tracker/">Personal RuneScape Tracker</a>
+      instance - a self-hosted character log and Grand Exchange tool. See the
+      <a href="https://github.com/Ronovo/Ronovos-Sync-Tool#readme">README</a> for setup.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="/">All projects</a>
+      <a href="https://github.com/Ronovo/Ronovos-Sync-Tool">Source</a>
+      <a href="https://github.com/Ronovo/Ronovos-Sync-Tool#readme">README</a>
+      <a href="https://github.com/Ronovo/Ronovos-Sync-Tool/blob/main/LICENSE">License (BSD 2-Clause)</a>
+      <a href="/projects/leagues-task-plugin/">Leagues Tasks plugin</a>
+      <a href="/projects/personal-runescape-tracker/">Personal RuneScape Tracker</a>
+    </div>
+    <p>Built with Java for RuneLite.</p>
+    <p class="disclaimer">
+      Not affiliated with, endorsed by, or sponsored by Jagex Ltd. Old School RuneScape
+      and RuneScape are trademarks of Jagex Ltd. RuneLite is a trademark of its
+      respective owners. This is an independent, fan-made plugin.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
