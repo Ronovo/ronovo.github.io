@@ -15,6 +15,7 @@
 <style>
   .hero h1 { font-size: clamp(44px, 11vw, 88px); letter-spacing: 0.12em; text-transform: uppercase; }
   .hero .intro { margin: -12px 0 28px; color: var(--muted); }
+  .hero .cta { margin-bottom: 28px; }
   .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
   .chips a {
     display: inline-flex;
@@ -32,7 +33,17 @@
   .chips b { color: var(--magenta); }
 
   .project { display: flex; flex-direction: column; }
-  .project p { margin: 0 0 14px; }
+  .project h3 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* Always three lines tall, so every card is the same height. */
+  .project p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    margin: 0 0 14px;
+    line-height: 1.65;
+    height: 4.95em;
+  }
   .thumb {
     display: grid;
     place-items: center;
@@ -43,18 +54,18 @@
     border-bottom: 1px solid var(--border);
   }
   .thumb img { display: block; max-width: 100%; height: 100%; object-fit: contain; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 0 16px; padding: 0; list-style: none; }
+  .tags { display: flex; gap: 6px; margin: auto 0 16px; padding: 0; list-style: none; overflow: hidden; }
   .tags li {
+    flex: none;
     padding: 2px 8px;
     border: 1px solid rgb(255 43 214 / 0.45);
     color: var(--magenta);
     font: 500 11px var(--font-mono);
     text-transform: uppercase;
   }
-  .project .links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
-  .project .links .btn { padding: 8px 16px; font-size: 12px; }
-  .project .links a:not(.btn) { font: 600 13px var(--font-mono); text-transform: uppercase; text-decoration: none; }
-  .project .links a:not(.btn):hover { text-decoration: underline; }
+  .project .links { display: flex; align-items: center; gap: 10px 18px; white-space: nowrap; }
+  .project .links a { font: 600 13px var(--font-mono); text-transform: uppercase; text-decoration: none; }
+  .project .links a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -78,6 +89,9 @@
     <h1>Ronovo</h1>
     <p class="tag">Self-hosted tools and browser games for tabletop players, OSRS players, and anyone who likes to tinker.</p>
     <p class="intro">I am Ian Kent, also known as Ronovo most places online.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/Ronovo">Github Main Page</a>
+    </div>
     <ul class="chips">
       <li><a href="#general">General <b>2</b></a></li>
       <li><a href="#ttrpg">TTRPG <b>3</b></a></li>
@@ -98,7 +112,7 @@
         <p>A chat app that runs code in esoteric languages like Brainfart, HQ9+ and DeadSimple. Ported from my Discord bot.</p>
         <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/esoteric-chat/">About</a>
+          <a href="/projects/esoteric-chat/">About</a>
           <a href="https://github.com/Ronovo/esoteric-chat">Source</a>
         </div>
       </article>
@@ -123,7 +137,7 @@
         <p>A web toolkit for tabletop gamemasters: dice and card oracles, branching flows, and JSON import/export.</p>
         <ul class="tags"><li>C#</li><li>ASP.NET Core</li><li>SQLite</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/gamemaster-toolbox/">About</a>
+          <a href="/projects/gamemaster-toolbox/">About</a>
           <a href="https://github.com/Ronovo/Gamemaster-Toolbox">Source</a>
         </div>
       </article>
@@ -132,7 +146,7 @@
         <p>A browser table for tabletop players: 3D dice, playing card and tarot decks, a notepad and a Jenga tower, in ten styles.</p>
         <ul class="tags"><li>JavaScript</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/ttrpg-player-toolkit/">About</a>
+          <a href="/projects/ttrpg-player-toolkit/">About</a>
           <a href="https://github.com/Ronovo/ttrpg-player-toolkit">Source</a>
         </div>
       </article>
@@ -141,7 +155,7 @@
         <p>An Obsidian overlay that publishes solo tabletop RPG play reports from your vault as a website.</p>
         <ul class="tags"><li>JavaScript</li><li>Node</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/ttrpg-adventure-blog/">About</a>
+          <a href="/projects/ttrpg-adventure-blog/">About</a>
           <a href="https://github.com/Ronovo/ttrpg-adventure-blog">Source</a>
           <a href="https://soloronovo.com" target="_blank" rel="noopener">Example</a>
         </div>
@@ -159,7 +173,7 @@
         <p>A self-hosted Old School RuneScape dashboard.</p>
         <ul class="tags"><li>TypeScript</li><li>Node</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/personal-runescape-tracker/">About</a>
+          <a href="/projects/personal-runescape-tracker/">About</a>
           <a href="https://github.com/Ronovo/Personal-RuneScape-Tracker">Source</a>
         </div>
       </article>
@@ -168,7 +182,7 @@
         <p>A RuneLite plugin to track every task from past OSRS Leagues events. Pairs with Ronovo&#39;s Sync Tool to send them to the Personal RuneScape Tracker.</p>
         <ul class="tags"><li>Java</li><li>Plugin</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/leagues-task-plugin/">About</a>
+          <a href="/projects/leagues-task-plugin/">About</a>
           <a href="https://github.com/Ronovo/Leagues-Task-Plugin">Source</a>
         </div>
       </article>
@@ -177,7 +191,7 @@
         <p>A RuneLite plugin that sends quests, diaries, combat achievements, the collection log and Leagues Tasks completions to the Personal RuneScape Tracker.</p>
         <ul class="tags"><li>Java</li><li>Plugin</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/ronovos-sync-tool/">About</a>
+          <a href="/projects/ronovos-sync-tool/">About</a>
           <a href="https://github.com/Ronovo/Ronovos-Sync-Tool">Source</a>
         </div>
       </article>
@@ -194,7 +208,7 @@
         <p>Blackjack, Ultimate Texas Hold&#39;em, baccarat, roulette, horse racing and more, with accounts, characters and achievements.</p>
         <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/casino/">About</a>
+          <a href="/projects/casino/">About</a>
           <a href="https://github.com/Ronovo/Casino_Test">Source</a>
         </div>
       </article>
@@ -203,7 +217,7 @@
         <p>A text-based exploration game on a space station: pick a job, manage power and oxygen, trade stocks, tend the bar and more.</p>
         <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/space-station-explorer/">About</a>
+          <a href="/projects/space-station-explorer/">About</a>
           <a href="https://github.com/Ronovo/online-space-station">Source</a>
         </div>
       </article>
@@ -212,7 +226,7 @@
         <p>A text-based weapons system for games: an armory of 26 guns across 6 classes, a firing range with distance, dummy sizes and fire modes, and bulk-fire balance reports.</p>
         <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/stand-alone-gun-system/">About</a>
+          <a href="/projects/stand-alone-gun-system/">About</a>
           <a href="https://github.com/Ronovo/standalonegunsystem">Source</a>
         </div>
       </article>
@@ -221,7 +235,7 @@
         <p>An idle game where you play an Old One buried deep in the earth, dreaming cultists into gathering the sanity you need to devour the world and be reborn.</p>
         <ul class="tags"><li>Python</li><li>Flask</li><li>JavaScript</li><li>SQLite</li><li>Docker</li></ul>
         <div class="links">
-          <a class="btn btn-primary" href="/projects/dead-but-dreaming/">About</a>
+          <a href="/projects/dead-but-dreaming/">About</a>
           <a href="https://github.com/Ronovo/Dead-But-Dreaming">Source</a>
         </div>
       </article>
